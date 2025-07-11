@@ -12,6 +12,8 @@ const authRoutes = require('./routes/authRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const uploadRoutes = require('./routes/upload');
 const metaRoutes = require('./routes/metaRoutes');
+const cronRoutes = require('./routes/cronRoutes');
+
 
 const app = express();
 
@@ -41,6 +43,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/meta', metaRoutes);
+app.use('/api/cron', cronRoutes);
 
 // ✅ Test Route (for debug)
 app.get('/test', (req, res) => {
