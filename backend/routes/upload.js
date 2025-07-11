@@ -16,15 +16,12 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// ✅ Upload Route
 router.post('/', upload.single('image'), async (req, res) => {
   try {
-    // ✅ Defensive check
     if (!req.file) {
-      return res.status(400).json({ message: 'No image file provided' });
+      return res.status(400).json({ message: 'No file uploaded' });
     }
 
-    // ✅ Stream upload to Cloudinary
     const streamUpload = (fileBuffer) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream((error, result) => {
@@ -37,10 +34,9 @@ router.post('/', upload.single('image'), async (req, res) => {
     };
 
     const result = await streamUpload(req.file.buffer);
-
     res.status(200).json({ imageUrl: result.secure_url });
   } catch (error) {
-    console.error('❌ Cloudinary upload error:', error);
+    console.error('Cloudinary upload error:', error);
     res.status(500).json({ message: 'Upload failed', error: error.message });
   }
 });
