@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-// Replace this with your actual cron job logic
 router.get('/run', async (req, res) => {
   try {
-    console.log('🔁 Cron job triggered');
+    // 🔁 Cron logic here — minimal logging
+    console.log('✅ Cron job triggered successfully');
 
-    // Example task: console log or DB cleanup
-    // await YourModel.deleteMany({ condition });
+    // Example: silent DB cleanup, job, or API call
+    // await SomeModel.deleteMany({ expired: true });
 
-    res.json({ success: true, message: '✅ Cron job executed successfully' });
+    res.status(200).json({ message: '✅ Cron executed' });
   } catch (err) {
     console.error('❌ Cron job error:', err.message);
-    res.status(500).json({ success: false, message: 'Cron job failed' });
+    res.status(500).json({ message: 'Cron failed' });
   }
 });
 
