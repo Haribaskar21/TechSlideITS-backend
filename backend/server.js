@@ -13,6 +13,8 @@ const blogRoutes = require('./routes/blogRoutes');
 const uploadRoutes = require('./routes/upload');
 const metaRoutes = require('./routes/metaRoutes');
 const cronRoutes = require('./routes/cronRoutes');
+const formRoutes = require('./routes/formRoutes');
+
 
 
 const app = express();
@@ -44,6 +46,8 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/meta', metaRoutes);
 app.use('/api/cron', cronRoutes);
+app.use('/api', formRoutes); // this adds /api/contact
+
 
 // ✅ Test Route (for debug)
 app.get('/test', (req, res) => {
