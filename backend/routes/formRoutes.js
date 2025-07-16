@@ -54,4 +54,21 @@ router.post('/contact', async (req, res) => {
   }
 });
 
+router.get('/test-email', async (req, res) => {
+  try {
+    await transporter.sendMail({
+      from: `"TechSlide Mailer" <${process.env.SMTP_USER}>`,
+      to: process.env.EMAIL_RECEIVER,
+      subject: "✅ SMTP Test Email",
+      html: "<h3>This is a test email from TechSlide server. If you're seeing this, SMTP is working.</h3>",
+    });
+
+    res.status(200).send("✅ Test email sent successfully!");
+  } catch (error) {
+    console.error("❌ SMTP Test Failed:", error.message);
+    res.status(500).send("❌ SMTP test failed: " + error.message);
+  }
+});
+
+
 module.exports = router;
