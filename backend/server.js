@@ -77,7 +77,7 @@ const createDefaultAdmin = async () => {
 };
 
 // ✅ Connect MongoDB & Start Server
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log('✅ Connected to MongoDB');
     await createDefaultAdmin();
