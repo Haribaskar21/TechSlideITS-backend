@@ -11,7 +11,7 @@ router.get('/run', async (req, res) => {
 
     res.status(200).json({ message: '✅ Cron executed' });
   } catch (err) {
-    console.error('❌ Cron job error:', err.message);
+    console.error('❌ Cron job error:');
     res.status(500).json({ message: 'Cron failed' });
   }
 });
